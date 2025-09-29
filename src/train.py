@@ -33,12 +33,13 @@ encoded_data_train = train_dataset.map(tokenize, batched=True, batch_size=None)
 encoded_val_data = val_dataset.map(tokenize, batched=True, batch_size=None)
 
 # Training with trainer API
-training_args = TrainingArguments(output_dir="./results", do_eval=True)
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=encoded_data_train,
-    eval_dataset=encoded_val_data
-)
+if __name__ == "__main__":
+    training_args = TrainingArguments(output_dir="./results", do_eval=True)
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=encoded_data_train,
+        eval_dataset=encoded_val_data
+    )
 
-trainer.train()
+    trainer.train()
